@@ -3,7 +3,7 @@
 
 cd $HOME/@SENATOR_5_6
 
-install() {
+install() { 
 	    cd tg
 		sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
 		sudo apt-get install g++-4.7 -y c++-4.7 -y
