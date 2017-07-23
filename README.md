@@ -23,23 +23,23 @@ sudo apt-get install libreadline-dev libconfig-dev libssl-dev lua5.2 liblua5.2-d
 ➖🔹➖🔹➖🔹➖🔹➖🔹
 ورأهأَ خلي  
 
-git clone https://github.com/moody2020/TEAMBOSS.git
+git clone https://github.com/senatorbot-team/SENATOR.git
 ➖🔹➖🔹➖🔹➖🔹➖🔹
 ورهأ خلي    
 
-cd TEAMBOSS
+cd SENATOR
 ➖🔹➖🔹➖🔹➖🔹➖🔹
 ورهأَ خلي 
 ➖🔹➖🔹➖🔹➖🔹➖🔹
-chmod +x TEAMBOSS.sh
+chmod +x SENATOR.sh
 ➖🔹➖🔹➖🔹➖🔹➖🔹
 ورهأَ خلي 
 
-./TEAMBOSS.sh install
+./SENATOR.sh install
 ➖🔹➖🔹➖🔹➖🔹➖🔹
 ورهأَ خلي  
 
-./TEAMBOSS.sh 
+./SENATOR.sh 
 ➖🔹➖🔹➖🔹➖🔹➖🔹
 *ملاحظه اذا يطلعلك حرف او  
 يوكف بالتنصيب تطي امر y وانتر 
