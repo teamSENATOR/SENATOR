@@ -1,5 +1,5 @@
 --Begin Tools.lua :)
-local SUDO = 128897752 -- حـط ايـديك
+local SUDO = 128897752  ++ اهناه خلي ايديك 
 local function index_function(user_id)
   for k,v in pairs(_config.admins) do
     if user_id == v[1] then
