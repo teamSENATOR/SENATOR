@@ -445,7 +445,7 @@ if matches[1] == 'انشاء مجموعه' and is_admin(msg) then
 local text = matches[2]
 tdcli.createNewGroupChat({[0] = msg.sender_user_id_}, text)
   if not lang then
-return '[♦️] تـم أنـشـاء الـمـجـوعـه ✅'
+return '[♦️] تـم أنـشـاء الـمـجمـوعـه ✅'
   else
    end
 end
@@ -454,7 +454,7 @@ if matches[1] == 'ترقيه سوبر' and is_admin(msg) then
 local text = matches[2]
 tdcli.createNewChannelChat({[0] = msg.sender_user_id_}, text)
    if not lang then 
-return '[♦️] تـم تـرقـيـه الـمـجـوعـه ✅'
+return '[♦️] تـم تـرقـيـه الـمـجمـوعـه ✅'
   else
    end
 end
@@ -463,7 +463,7 @@ if matches[1] == 'صنع خارقه' and is_admin(msg) then
 local id = msg.chat_id_
 tdcli.migrateGroupChatToChannelChat(id)
   if not lang then
-return '[♦️] تـم أنـشـاء الـمـجـوعـه ✅'
+return '[♦️] تـم أنـشـاء الـمـجمـوعـه ✅'
   else
    end
 end
