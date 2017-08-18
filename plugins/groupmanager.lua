@@ -1,7 +1,15 @@
+--[[
+    _____  _____ __   _     _   _____ ___  ____
+   /  ___|| ____|\ \ | |   / \ |_   _/ _ \|  _ \
+   \___  \|  _| | \ \| |  / _ \  | || | | | |_) |
+   ____)  | |___| |\ \ | / ___ \ | || |_| |  _ <
+   \_____/|_____|_| \_\|/_/   \_\|_| \___/|_| \_\
+
+--]]
+
 local function modadd(msg)
 local hash = "gp_lang:"..msg.chat_id_
 local lang = redis:get(hash)
-    -- superuser and admins only (because sudo are always has privilege)
     if not is_admin(msg) then
    if not lang then
        return '[♦️] اهلآ وسهلآ بك😻✋️\n[♦️] انت لست المطور ❌'
@@ -15,36 +23,35 @@ if not lang then
 else
   end
 end
-        -- create data array in moderation.json
       data[tostring(msg.chat_id_)] = {
               owners = {},
       mods ={},
       banned ={},
       is_silent_users ={},
       filterlist ={},
-      settings = {
-          lock_link = 'yes',
-          lock_tag = 'yes',
-          lock_spam = 'yes',
-          lock_webpage = 'no',
-          lock_markdown = 'no',
-          flood = 'yes',
-          lock_bots = 'yes',
-          welcome = 'yes'
-          },
+   settings = {
+   lock_link = 'yes',
+   lock_tag = 'yes',
+   lock_spam = 'yes',
+   lock_webpage = 'no',
+   lock_markdown = 'no',
+   flood = 'yes',
+   lock_bots = 'yes',
+   welcome = 'yes'
+              },
    mutes = {
-                  mute_fwd = 'no',
-                  mute_audio = 'no',
-                  mute_video = 'no',
-                  mute_contact = 'no',
-                  mute_text = 'no',
-                  mute_photos = 'no',
-                  mute_gif = 'no',
-                  mute_loc = 'no',
-                  mute_doc = 'no',
-                  mute_sticker = 'no',
-                  mute_voice = 'no',
-                   mute_all = 'no'
+   mute_fwd = 'no',
+   mute_audio = 'no',
+   mute_video = 'no',
+   mute_contact = 'no',
+   mute_text = 'no',
+   mute_photos = 'no',
+   mute_gif = 'no',
+   mute_loc = 'no',
+   mute_doc = 'no',
+   mute_sticker = 'no',
+   mute_voice = 'no',
+   mute_all = 'no'
           }
       }
   save_data(_config.moderation.data, data)
@@ -64,7 +71,6 @@ end
 local function modrem(msg)
 local hash = "gp_lang:"..msg.chat_id_
 local lang = redis:get(hash)
-    -- superuser and admins only (because sudo are always has privilege)
       if not is_admin(msg) then
      if not lang then
         return '[♦️] اهلا وسهلا بك 😻✋️ \n[♦️] أنـت لـسـت الـمـطـور ❌'
@@ -150,8 +156,7 @@ local lang = redis:get(hash)
  else
     end
      end
-  -- determine if table is empty
-  if next(data[tostring(msg.chat_id_)]['mods']) == nil then --fix way
+  if next(data[tostring(msg.chat_id_)]['mods']) == nil then 
   if not lang then
 return  "[♦️] اهلا وسهلا بك 😻✋️\n[♦️] لا يوجد ادمن في هذه المجموعه ❌"
 else
@@ -180,8 +185,7 @@ if not lang then
 else
   end
 end
-  -- determine if table is empty
-  if next(data[tostring(msg.chat_id_)]['owners']) == nil then --fix way
+  if next(data[tostring(msg.chat_id_)]['owners']) == nil then 
  if not lang then
   return  "[♦️] اهلا وسهلا بك 😻✋️\n[♦️] لا يوجد هنا مدير ❌"
 else
@@ -207,7 +211,7 @@ if not tonumber(data.sender_user_id_) then return false end
     if data.sender_user_id_ then
   if not administration[tostring(data.chat_id_)] then
   if not lang then
-return tdcli.sendMessage(data.chat_id_, "", 0, "💡¦ _هذه المجموعه ليست من حمايتي ⚙️_", 0, "md")
+return tdcli.sendMessage(data.chat_id_, "", 0, "[♦️] اهلآ وسهلآ بك 😻✋️\n[♦️] هذه المجموعه ليست من حمايتي ❌", 0, "md")
 else
      end
   end
@@ -412,7 +416,7 @@ return tdcli.sendMessage(arg.chat_id, "", 0, '[♦️] اهلآ وسهلآ بك 
    else
    end
 end
-   if cmd == "id" then
+    if cmd == "id" then
     return tdcli.sendMessage(arg.chat_id, "", 0, "[♦️] user "..data.id_.." ", 0, "md")
 end
     if cmd == "res" then
@@ -512,7 +516,7 @@ if data.username_ then
 username = '@'..check_markdown(data.username_)
 else
 if not lang then
-username = '_لا يوجد_'
+username = ' لا يوجد '
  else
   end
 end
@@ -535,9 +539,6 @@ else
    end
 end
 
-
-
----------------Lock Link-------------------
 local function lock_link(msg, data, target)
 local hash = "gp_lang:"..msg.chat_id_
 local lang = redis:get(hash)
@@ -641,7 +642,6 @@ end
 end
 end
 
----------------Lock Mention-------------------
 local function lock_mention(msg, data, target)
  local hash = "gp_lang:"..msg.chat_id_
 local lang = redis:get(hash)
@@ -693,7 +693,6 @@ end
 end
 end
 
----------------Lock Arabic--------------
 local function lock_arabic(msg, data, target)
 local hash = "gp_lang:"..msg.chat_id_
 local lang = redis:get(hash)
@@ -745,7 +744,6 @@ end
 end
 end
 
----------------Lock Edit-------------------
 local function lock_edit(msg, data, target) 
 local hash = "gp_lang:"..msg.chat_id_
 local lang = redis:get(hash)
@@ -797,7 +795,6 @@ end
 end
 end
 
----------------Lock spam-------------------
 local function lock_spam(msg, data, target) 
 local hash = "gp_lang:"..msg.chat_id_
 local lang = redis:get(hash)
@@ -848,7 +845,7 @@ else
 end
 end
 end
----------------Lock Flood-------------------
+
 local function lock_flood(msg, data, target) 
 local hash = "gp_lang:"..msg.chat_id_
 local lang = redis:get(hash)
@@ -900,7 +897,6 @@ end
 end
 end
 
----------------Lock Bots-------------------
 local function lock_bots(msg, data, target) 
 local hash = "gp_lang:"..msg.chat_id_
 local lang = redis:get(hash)
@@ -952,7 +948,6 @@ end
 end
 end
 
----------------Lock Markdown-------------------
 local function lock_markdown(msg, data, target) 
 local hash = "gp_lang:"..msg.chat_id_
 local lang = redis:get(hash)
@@ -1004,7 +999,6 @@ end
 end
 end
 
----------------Lock Webpage-------------------
 local function lock_webpage(msg, data, target) 
 local hash = "gp_lang:"..msg.chat_id_
 local lang = redis:get(hash)
@@ -1057,8 +1051,6 @@ end
 end
 end
 
---------Mutes---------
---------Mute all--------------------------
 local function mute_all(msg, data, target) 
 local hash = "gp_lang:"..msg.chat_id_
 local lang = redis:get(hash)
@@ -1112,7 +1104,6 @@ end
 end
 end
 
----------------Mute Gif-------------------
 local function mute_gif(msg, data, target) 
 local hash = "gp_lang:"..msg.chat_id_
 local lang = redis:get(hash)
@@ -1164,7 +1155,7 @@ else
 end
 end
 end
----------------Mute Game-------------------
+
 local function mute_game(msg, data, target) 
 local hash = "gp_lang:"..msg.chat_id_
 local lang = redis:get(hash)
@@ -1216,7 +1207,7 @@ else
 end
 end
 end
----------------Mute Inline-------------------
+
 local function mute_inline(msg, data, target) 
 local hash = "gp_lang:"..msg.chat_id_
 local lang = redis:get(hash)
@@ -1268,7 +1259,7 @@ else
 end
 end
 end
----------------Mute Text-------------------
+
 local function mute_text(msg, data, target) 
 local hash = "gp_lang:"..msg.chat_id_
 local lang = redis:get(hash)
@@ -1320,7 +1311,7 @@ else
 end
 end
 end
----------------Mute photo-------------------
+
 local function mute_photo(msg, data, target) 
 local hash = "gp_lang:"..msg.chat_id_
 local lang = redis:get(hash)
@@ -1372,7 +1363,7 @@ else
 end
 end
 end
----------------Mute Video-------------------
+
 local function mute_video(msg, data, target) 
 local hash = "gp_lang:"..msg.chat_id_
 local lang = redis:get(hash)
@@ -1424,7 +1415,7 @@ else
 end
 end
 end
----------------Mute Audio-------------------
+
 local function mute_audio(msg, data, target) 
 local hash = "gp_lang:"..msg.chat_id_
 local lang = redis:get(hash)
@@ -1476,7 +1467,7 @@ else
 end
 end
 end
----------------Mute Voice-------------------
+
 local function mute_voice(msg, data, target) 
 local hash = "gp_lang:"..msg.chat_id_
 local lang = redis:get(hash)
@@ -1528,7 +1519,7 @@ else
 end
 end
 end
----------------Mute Sticker-------------------
+
 local function mute_sticker(msg, data, target) 
 local hash = "gp_lang:"..msg.chat_id_
 local lang = redis:get(hash)
@@ -1632,7 +1623,7 @@ else
 end
 end
 end
----------------Mute Forward-------------------
+
 local function mute_forward(msg, data, target) 
 local hash = "gp_lang:"..msg.chat_id_
 local lang = redis:get(hash)
@@ -1684,7 +1675,7 @@ else
 end
 end
 end
----------------Mute Location-------------------
+
 local function mute_location(msg, data, target) 
 local hash = "gp_lang:"..msg.chat_id_
 local lang = redis:get(hash)
@@ -1698,7 +1689,7 @@ end
 local mute_location = data[tostring(target)]["mutes"]["mute_location"] 
 if mute_location == "yes" then
 if not lang then
-return '[♦️] اهلآ وسهلآ بك 😻✋️\n[♦] الموقع بلفعل تم قفلها 🔐✅'
+return '[♦️] اهلآ وسهلآ بك 😻✋️\n[♦️] الموقع بلفعل تم قفلها 🔐✅'
 elseif lang then
 end
 else
@@ -1736,7 +1727,7 @@ else
 end
 end
 end
----------------Mute Document-------------------
+
 local function mute_document(msg, data, target) 
 local hash = "gp_lang:"..msg.chat_id_
 local lang = redis:get(hash)
@@ -1788,7 +1779,7 @@ else
 end
 end
 end
----------------Mute TgService-------------------
+
 local function mute_tgservice(msg, data, target) 
 local hash = "gp_lang:"..msg.chat_id_
 local lang = redis:get(hash)
@@ -1840,7 +1831,7 @@ else
 end 
 end
 end
-----------MuteList---------
+
 function group_settings(msg, target) 	
 local hash = "gp_lang:"..msg.chat_id_
 local lang = redis:get(hash)
@@ -2005,11 +1996,10 @@ end
 
 if not lang then
 local settings = data[tostring(target)]["settings"] 
-text = " اهلآ وسهلآ بك 😻✋️\n[♦️] اعـدادات الـمـجـمـوعـه 📝\n🔹🔸🔹🔸🔹🔸🔹🔸🔹\n[♦️] قفل التعديل ❗️ "..settings.lock_edit.."\n[♦️] قفل الروابط ❗️ "..settings.lock_link.."\n[♦️] قفل التاك ❗️  "..settings.lock_tag.."\n[♦️] قفل التكرار ❗️ "..settings.flood.."\n[♦️] ققل الكلايش ❗️ "..settings.lock_spam.."\n[♦️] قفل التذكير ❗️ "..settings.lock_mention.."\n[♦️] قفل العربيه ❗️ "..settings.lock_arabic.."\n[♦️] قفل الاعلانات ❗️ "..settings.lock_webpage.."\n[♦️] قفل الماركدوان ❗️ "..settings.lock_markdown.."\n[♦️] وضع الترحيب ❗️ "..settings.welcome.."\n[♦️] منع البوتات ❗️ "..settings.lock_bots.."\n[♦️] عدد التكرار ❗️ "..NUM_MSG_MAX.."\n[♦️] قفل المحادثه ❗️"..settings.mute_all.."\n[♦️] قفل الملصقات ❗️"..settings.mute_gif.."\n[♦️] قفل النص ❗️"..settings.mute_text.."\n[♦️] قفل الانلاين ❗️"..settings.mute_inline.."\n[♦️] قفل الالعاب ❗️"..settings.mute_game.."\n[♦️] قفل الصور ❗️"..settings.mute_photo.."\n[♦️] قفل الفيديو ❗️"..settings.mute_video.."\n[♦️] قفل البصمات ❗️"..settings.mute_audio.."\n[♦️] قفل الصوت  ❗️"..settings.mute_voice.."\n[♦️] قفل الملصقات ❗️"..settings.mute_sticker.."\n[♦️] قفل جهات الاتصال ❗️ "..settings.mute_contact.."\n[♦️] قفل التوجيه ❗️"..settings.mute_forward.."\n[♦️] قفل الموقع ❗️"..settings.mute_location.."\n[♦️] قفل الملفات ❗️ "..settings.mute_document.."\n[♦️] قفل الاسعارات ❗️ "..settings.mute_tgservice.."\n🔹🔸🔹🔸🔹🔸🔹🔸🔹\n   @Dev_Hussein5_6"
+text = " اهلآ وسهلآ بك 😻✋️\n[♦️] اعـدادات الـمـجـمـوعـه 📝\n➖➖➖➖➖➖➖➖➖\n[♦️] قفل التعديل ❗️ "..settings.lock_edit.."\n[♦️] قفل الروابط ❗️ "..settings.lock_link.."\n[♦️] قفل التاك ❗️  "..settings.lock_tag.."\n[♦️] قفل التكرار ❗️ "..settings.flood.."\n[♦️] ققل الكلايش ❗️  "..settings.lock_mention.."\n[♦️] قفل العربيه ❗️ "..settings.lock_arabic.."\n[♦️] قفل الاعلانات ❗️ "..settings.lock_webpage.."\n[♦️] قفل الماركدوان ❗️ "..settings.lock_markdown.."\n[♦️] وضع الترحيب ❗️ "..settings.welcome.."\n[♦️] منع البوتات ❗️ "..settings.lock_bots.."\n[♦️] عدد التكرار ❗️ "..NUM_MSG_MAX.."\n[♦️] قفل المحادثه ❗️"..settings.mute_all.."\n[♦️] قفل الملصقات ❗️"..settings.mute_gif.."\n[♦️] قفل النص ❗️"..settings.mute_text.."\n[♦️] قفل الانلاين ❗️"..settings.mute_inline.."\n[♦️] قفل الالعاب ❗️"..settings.mute_game.."\n[♦️] قفل الصور ❗️"..settings.mute_photo.."\n[♦️] قفل الفيديو ❗️"..settings.mute_video.."\n[♦️] قفل البصمات ❗️"..settings.mute_audio.."\n[♦️] قفل الصوت  ❗️"..settings.mute_voice.."\n[♦️] قفل الملصقات ❗️"..settings.mute_sticker.."\n[♦️] قفل جهات الاتصال ❗️ "..settings.mute_contact.."\n[♦️] قفل التوجيه ❗️"..settings.mute_forward.."\n[♦️] قفل الموقع ❗️"..settings.mute_location.."\n[♦️] قفل الملفات ❗️ "..settings.mute_document.."\n[♦️] قفل الاشعارات ❗️ "..settings.mute_tgservice.."\n➖➖➖➖➖➖➖➖➖\nاي استفسار راسل المطور 〽️\n#DEV ♻️ @HUSSEINAli33\nقناه السورس ♻️ @SENATOR1994 "
 end
 return text
 end
-
 local function run(msg, matches)
 local hash = "gp_lang:"..msg.chat_id_
 local lang = redis:get(hash)
@@ -2150,9 +2140,6 @@ end
 if matches[2] == "التاك" then
 return lock_tag(msg, data, target)
 end
-if matches[2] == "mention" then
-return lock_mention(msg, data, target)
-end
 if matches[2] == "العربيه" then
 return lock_arabic(msg, data, target)
 end
@@ -2183,9 +2170,6 @@ return unlock_link(msg, data, target)
 end
 if matches[2] == "التاك" then
 return unlock_tag(msg, data, target)
-end
-if matches[2] == "mention" then
-return unlock_mention(msg, data, target)
 end
 if matches[2] == "العربيه" then
 return unlock_arabic(msg, data, target)
@@ -2368,18 +2352,16 @@ end
          rules = "[♦️] اهلآ وسهلآ بك 😻✋️\n القوانين المجموعه ⤵️\n[♦️] ممنوع نشر الروابط 🚫\n[♦️] ممنوع نشر صوره متحركه اباحيه 😂☝️\n[♦️] ممنوع نشر اعاده توجيه 🚫\n[♦️] ممنوع التكلم بلطائفه😾 اخوان سنه او شيعه هاذ الوطن من بيعه😌😹\n[♦️] اخي عليك بلتزام القوانين المجموعه 😌✋️\n[♦️] المطور عمكم حسوني 😌😹\n[♦️] @Dev_Hussein5_6 "
     elseif lang then
  end
-        else
-     rules = "[♦️] Group Rules :\n"..data[tostring(chat)]['rules']
       end
     return rules
   end
-if matches[1] == "res" or matches[1] == "القوانين" and matches[2] and is_mod(msg) then
+if matches[1] == "القوانين" and matches[2] and is_mod(msg) then
     tdcli_function ({
       ID = "SearchPublicChat",
       username_ = matches[2]
     }, action_by_username, {chat_id=msg.chat_id_,username=matches[2],cmd="res"})
-  end
-if matches[1] == "معلومات" and matches[2] and is_mod(msg) then
+end
+if matches[1] == "" and matches[2] and is_mod(msg) then
 tdcli_function ({
     ID = "GetUser",
     user_id_ = matches[2],
@@ -2515,7 +2497,6 @@ end
       elseif lang then
        end
         else
-     about = "[♦️] Group Description : \n"..data[tostring(chat)]['about']
       end
     return about
   end
@@ -2531,70 +2512,19 @@ if matches[1] == 'قائمه المنع' and is_mod(msg) then
 if matches[1] == "الاعدادات" then
 return group_settings(msg, target)
 end
-if matches[1] == "mutelist" then
-return mutes(msg, target)
-end
 if matches[1] == "الادمنيه" then
 return modlist(msg)
 end
 if matches[1] == "المدراء" and is_owner(msg) then
 return ownerlist(msg)
 end
----------------------------------------------------
-
-
-if matches[1] == "م1" and is_mod(msg) then
+if matches[1] == "" and is_mod(msg) then
 if not lang then
-text = [[
-‎رفع المدير  [♦️]
-‎ تنزيل المدير  [♦️]
-‎رفع ادمن  [♦️] 
-‎ تنزيل ادمن  [♦️]
-‎ ضع تكرار العدد من [1=>50]  [♦️]
-‎كتم => لكتم العضو  [♦️] 
-‎الغاء الكتم => لرفع الكتم   [♦️]
-‎طرد => لطرد العضو   [♦️]
-‎حظر => لحظر العضو  [♦️] 
-‎الغاء الحظر => لرفع الحظر   [♦️]
-‎يوزر => معرف => لعرض اسم =>ايدي  [♦️]
-[♦️] ايدي => لعرض الايدي 
-‎معلوماتي => لعرض المعلومات  [♦️]
-➖♦️➖♦️➖♦️➖♦️➖
-‎       القفل ولفتح 
-‎[♦️] الروابط ♦️التاك ♦️التعديل ♦️العربيه ♦️الاعلانات ♦️البوتات ♦️التكرار ♦️الكلايش ♦️الماركدوان ♦️المتحركه♦️الصور♦️الملفات♦️الملصقات♦️الفيديو♦️الصوت♦️البصمات ♦️الجهات♦️الاشعارات
-➖🔹➖🔹➖🔹➖🔹➖
-[♦️] ضع قوانين 
-[♦️] ضع اسم 
-[♦️] ضع وصف 
-[♦️] ضع ترحيب
-➖🔹➖🔹➖🔹➖🔹➖
-[♦️] مسح => ⬇️
-[♦️] المحظورين 🔹الادمنيه🔹القوانين🔹البوتات🔹الوصف🔹الترحيب🔹قائمه المنع🔹المكتومين
-➖🔹➖🔹➖🔹➖🔹➖
-[♦️] منع =>الكلمه
-[♦️] الغاء منع =>الكلمه
-[♦️] تثبيت 
-[♦️] الغاء تثبيت
-[♦️] الاعدادات 
-[♦️] المكتومين 
-[♦️] قائمه المنع 
-[♦️] المحظورين 
-[♦️] المدراء 
-[♦️] الادمنيه 
-[♦️] القوانين
-[♦️] معلومات المجموعه
-[♦️] الرابط 
-[♦️] ضع ترحيب
-➖➖➖➖➖➖➖➖➖
-
-#Dev @Dev_Hussein5_6
-]]
-
+text = [[]]
 end
 return text
 end
 
---------------------- Welcome -----------------------
 	if matches[1] == "الترحيب" and is_mod(msg) then
 		if matches[2] == "تشغيل" then
 			welcome = data[tostring(chat)]['settings']['welcome']
@@ -2634,7 +2564,7 @@ end
 		data[tostring(chat)]['setwelcome'] = matches[2]
 	    save_data(_config.moderation.data, data)
        if not lang then
-		return "[♦️] تم وضع الترحيب بنجاح ✔️\n"..matches[2].." \n\n[♦️] ملاحظه \n[♦️] تستطيع اضهار القوانين بواسطه  {rules}  \n[♦️] تستطيع اضهار الاسم بواسطه {name} \n[♦️] تستطيع اضهار المعرف بواسه {username} "
+		return "[♦️] تم وضع الترحيب بنجاح ✔️\n"..matches[2]..""
        else
      end
 	end
@@ -2732,9 +2662,6 @@ patterns ={
 "^(ضع اسم) (.*)$",
 "^(مسح) (.*)$",
 "^(ضع تكرار) (%d+)$",
-"^(res) (.*)$",
-"^(معلومات) (%d+)$",
-"^(الاوامر)$",
 "^(منع) (.*)$",
 "^(الغاء منع) (.*)$",
 "^(قائمه المنع)$",
@@ -2747,4 +2674,3 @@ patterns ={
 run=run,
 pre_process = pre_process
 }
---end groupmanager.lua #BOSS TEAM#
