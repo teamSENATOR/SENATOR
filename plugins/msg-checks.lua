@@ -1,12 +1,4 @@
---[[
-    _____  _____ __   _     _   _____ ___  ____
-   /  ___|| ____|\ \ | |   / \ |_   _/ _ \|  _ \
-   \___  \|  _| | \ \| |  / _ \  | || | | | |_) |
-   ____)  | |___| |\ \ | / ___ \ | || |_| |  _ <
-   \_____/|_____|_| \_\|/_/   \_\|_| \___/|_| \_\
-
---]]
-
+--Begin msg_checks.lua By @TH3BOSS
 local TIME_CHECK = 2
 local function pre_process(msg)
 local data = load_data(_config.moderation.data)
@@ -22,7 +14,7 @@ local data = load_data(_config.moderation.data)
     if msg.text then
   if msg.text:match("(.*)") then
     if not data[tostring(chat)] and not redis:get(auto_leave) and not is_admin(msg) then
-  tdcli.sendMessage(msg.chat_id_, "", 0, "_This Is Not One Of My Groups ", 0, "md")
+  tdcli.sendMessage(msg.chat_id_, "", 0, "_This Is Not One Of My Groups_*", 0, "md")
   tdcli.changeChatMemberStatus(chat, our_id, 'Left', dl_cb, nil)
       end
    end
@@ -402,7 +394,7 @@ return
 else
    del_msg(msg.chat_id_, msg.id_)
     kick_user(user, chat)
-  tdcli.sendMessage(msg.chat_id_, msg.id_, 0, "_User_ `[ "..user.." ]` _has been_ kicked _because of_ flooding ", 0, "md")
+  tdcli.sendMessage(msg.chat_id_, msg.id_, 0, "_User_ `[ "..user.." ]` _has been_ *kicked* _because of_ *flooding*", 0, "md")
 redis:setex('sender:'..user..':flood', 30, true)
       end
     end
@@ -416,3 +408,4 @@ return {
 	patterns = {},
 	pre_process = pre_process
 }
+--End msg_checks.lua
